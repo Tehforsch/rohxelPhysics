@@ -58,7 +58,7 @@ public class CollisionHandler implements Serializable {
 		return contacts;
 	}
 	/**
-	 * Determines whether a collision between a pair of bodies should be processed or not. Collisions should not be processed if: 1. Both bodies are static. 2. Both bodies are asleep. The following two requirements make it possible to exclude some bodies from collision with certain other bodies because: If two bodies are in the same collision body and not in the default collision body -1 or in the default collision group -1 and they are in different collision groups then they will not collide.
+	 * Determines whether a collision between a pair of bodies should be processed or not. Collisions should not be processed if: 1. Both bodies are static. 2. Both bodies are asleep. 3. The bodies are explicitly non-colliding (can be set from outside and used for game reasons).
 	 * 
 	 * @param p
 	 * @return
@@ -94,7 +94,7 @@ public class CollisionHandler implements Serializable {
 		broadphase.addBody(b);
 	}
 	private void extendArray() {
-		Log.p("erweitere array in CollisionHandler.java");
+		Log.p("Broadphase collision array extended");
 		Pair[][] newPairs = new Pair[numBodies + RESERVEDSPACE][numBodies + RESERVEDSPACE];
 		for (int i = 0; i < pairs.length; i++) {
 			for (int j = 0; j < pairs.length; j++) {
