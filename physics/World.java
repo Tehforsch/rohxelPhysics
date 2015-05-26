@@ -35,13 +35,13 @@ public class World implements Serializable {
 	// The distance that two bodies can penetrate each other without the contact
 	// solver pushing them apart.
 	public static final float INVDT = 1.0f / PhysicalConstants.DT;
-	public static final float ALLOWEDPENETRATION = 0.9f;
+	public static final float ALLOWEDPENETRATION = 0.09f;
 	// A little margin that is added to the bodies in the broadphase so they are
 	// not cut up exactly where they end.
 	// Not entirely sure if this is actually needed but it doesn't slow down
 	// calculations very much and will probably prevent some occuring bugs
 	// later.
-	public static final float BOUNDINGMARGIN = 0.5f;
+	public static final float BOUNDINGMARGIN = 0.1f;
 	// The two fundamental types of physical objects
 	private IdSystem<Body> bodies;
 	private IdSystem<Joint> joints;
@@ -59,7 +59,7 @@ public class World implements Serializable {
 	public float time = 0.0f;
 	private Point windStrength = PhysicalConstants.WIND;
 	private transient Statistics stats;
-	// be done.
+    // If this is true a few methods are run to see if newly added bodies are too large/small/fast/...
 	public static final boolean SAFETY = true;
 	public World() {
 		this.bodies = new IdSystem<Body>();
